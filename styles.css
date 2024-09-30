@@ -1,0 +1,119 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #273444;
+    font-family: Arial, sans-serif;
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.circle-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #6DAA81;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.circle-button:hover {
+    background-color: #5c9b73; /* Cambio de color al pasar el ratón */
+}
+
+.item-container {
+    display: none;
+    position: absolute;
+    top: -350px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    background-color: #6DAA81;
+    color: #273444;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.item-container.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -10px);
+}
+
+.slider-container {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        display: flex;
+        position: absolute;
+        bottom: 70px;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.slider-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #6DAA81;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    position: absolute;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="email"], textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
