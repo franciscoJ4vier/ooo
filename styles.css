@@ -6,6 +6,7 @@ body {
     margin: 0;
     background-color: #273444;
     font-family: Arial, sans-serif;
+    overflow: hidden; /* Evita que la página se desplace */
 }
 
 .button-container {
@@ -13,22 +14,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
+    width: 100%;
+    margin-top: 389px; /* Ajusta este valor para bajar más los botones */
 }
 
 .circle-button {
-    width: 50px;
+    width: 50px; /* Tamaño fijo para laptops y PCs */
     height: 50px;
     border-radius: 50%;
     background-color: #6DAA81;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 16px; /* Tamaño de fuente fijo */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 20px;
+    margin: 0 20px; /* Espaciado entre botones */
     outline: none;
     transition: background-color 0.3s;
 }
@@ -40,15 +42,14 @@ body {
 .item-container {
     display: none;
     position: absolute;
-    top: -350px;
+    top: -70vh; /* Ajusta el top a un porcentaje de la pantalla */
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
-    padding: 20px;
+    width: 300px; /* Ancho fijo para el contenedor de formulario */
+    height: auto; /* Alto automático para ajustarse al contenido */
+    padding: 20px; /* Espaciado interno */
     background-color: #6DAA81;
     color: #273444;
-    border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     opacity: 0;
@@ -66,31 +67,32 @@ body {
 }
 
 @media (max-width: 768px) {
+    .circle-button {
+        width: 15vw; /* Se ajusta a un porcentaje de la pantalla en móviles */
+        height: 15vw;
+        font-size: 4vw; /* Tamaño de fuente relativo a la pantalla */
+    }
+
+    .item-container {
+        width: 80vw; /* Se ajusta al ancho de la pantalla en móviles */
+        height: 60vh; /* Ajusta el alto */
+    }
+
     .slider-container {
         display: flex;
         position: absolute;
-        bottom: 70px;
+        bottom: 10vh;
         left: 0;
         right: 0;
         justify-content: center;
         align-items: center;
     }
-}
-
-.slider-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #6DAA81;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    position: absolute;
+    
+    .slider-button {
+        width: 15vw;
+        height: 15vw;
+        font-size: 5vw;
+    }
 }
 
 form {
