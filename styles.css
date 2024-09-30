@@ -89,12 +89,12 @@ body {
     }
     
     .slider-button {
-        width: 15vw;
-        height: 15vw;
-        font-size: 5vw;
+        position: absolute;
+        bottom: 10vh; /* 10% de la altura del viewport desde la parte inferior */
+        left: 50%;    /* Centrado horizontalmente */
+        transform: translateX(-50%); /* Ajusta el botón para que esté completamente centrado */
     }
-}
-
+    
 form {
     display: flex;
     flex-direction: column;
@@ -118,4 +118,5 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #45a049;
+}
 }
