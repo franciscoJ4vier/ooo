@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón Circular con Ítems y Formularios</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #273444;
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            position: relative;
+            margin-top: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #6DAA81;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 20px;
+            outline: none;
+        }
+        .item-container {
+            display: none;
+            position: absolute;
+            top: -350px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            background-color: #6DAA81;
+            color: #273444;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .item-container.show {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -10px);
+        }
+        
+        .slider-container {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .slider-container {
+                display: flex;
+                position: absolute;
+                bottom: 70px;
+                left: 0;
+                right: 0;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .slider-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #6DAA81;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+            position: absolute;
+        }
+        .item {
+            display: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"], input[type="email"], textarea {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="circle-button" id="c1" onclick="abrirItems('itemContainer1')">C1</button>
+        <button class="circle-button" id="c2" onclick="abrirItems('itemContainer2')">C2</button>
+        <button class="circle-button" id="c3" onclick="abrirItems('itemContainer3')">C3</button>
+        
+        <div class="item-container" id="itemContainer1">
+            <form>
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Correo:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="3" required></textarea>
+                
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        
+        <div class="item-container" id="itemContainer2">
+            <form>
+                <label for="name2">Nombre:</label>
+                <input type="text" id="name2" name="name" required>
+                
+                <label for="email2">Correo:</label>
+                <input type="email" id="email2" name="email" required>
+                
+                <label for="message2">Mensaje:</label>
+                <textarea id="message2" name="message" rows="3" required></textarea>
+                
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        
+        <div class="item-container" id="itemContainer3">
+            <form>
+                <label for="name3">Nombre:</label>
+                <input type="text" id="name3" name="name" required>
+                
+                <label for="email3">Correo:</label>
+                <input type="email" id="email3" name="email" required>
+                
+                <label for="message3">Mensaje:</label>
+                <textarea id="message3" name="message" rows="3" required></textarea>
+                
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+    
+    <div class="slider-container">
+        <button class="slider-button" id="sliderButton">⇔</button>
+    </div> 
+
+    <script>
+        let currentItemIndex = 0;
+        const items = [
+            'item1.1', 'item1.2', 'item1.3', 'item1.4',
+            'item1.5', 'item1.6', 'item1.7', 'item1.8',
+            'item1.9', 'item1.10'
+        ]; 
+
+        function abrirItems(id) {
+            var itemContainer = document.getElementById(id);
+            if (itemContainer.classList.contains('show')) {
+                itemContainer.classList.remove('show');
+                setTimeout(() => {
+                    itemContainer.style.display = 'none';
+                }, 300);
+            } else {
+                ocultarItems();
+                itemContainer.style.display = 'block';
+                setTimeout(() => {
+                    itemContainer.classList.add('show');
+                }, 10);
+            }
+        } 
+
+        function ocultarItems() {
+            var itemContainers = document.querySelectorAll('.item-container');
+            itemContainers.forEach(itemContainer => {
+                if (itemContainer.classList.contains('show')) {
+                    itemContainer.classList.remove('show');
+                    setTimeout(() => {
+                        itemContainer.style.display = 'none';
+                    }, 300);
+                }
+            });
+        } 
+
+        const sliderButton = document.getElementById('sliderButton');
+        let isDragging = false;
+        let startX = 0;
+        let startLeft = 0; 
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            startLeft = parseInt(getComputedStyle(sliderButton).left, 10);
+            sliderButton.style.transition = 'none'; 
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            const x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const dx = x - startX;
+            const leftPosition = startLeft + dx;
+
+            // Establecer los límites de movimiento para el botón
+            const minLeft = 80; // Límite izquierdo (80px antes del borde izquierdo)
+            const maxLeft = window.innerWidth - 80 - sliderButton.offsetWidth; // Límite derecho (80px antes del borde derecho)
+
+            // Aplicar los límites al movimiento
+            sliderButton.style.left = `${Math.min(Math.max(leftPosition, minLeft), maxLeft)}px`;
+        }
+
+        function endDrag() {
+            isDragging = false;
+            sliderButton.style.transition = 'left 0.3s ease';
+            const leftPosition = parseInt(sliderButton.style.left, 10);
+            const itemCount = items.length;
+            const itemWidth = 50; // Ancho del item (ajustar según necesidad)
+            currentItemIndex = Math.min(Math.max(Math.round(leftPosition / itemWidth), 0), itemCount - 1);
+            console.log('Ítem actual:', items[currentItemIndex]);
+        }
+
+        sliderButton.addEventListener('mousedown', startDrag);
+        sliderButton.addEventListener('touchstart', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag);
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+    </script>
+</body>
+</html>
